@@ -1,0 +1,6 @@
+# This build is staged on a github.io subdomain, not on the client's own domain.
+# Indexing is off so the staging copy never competes with the final site.
+# To go live: delete these two lines, set Allow: /, and remove the
+# <meta name="robots" content="noindex,nofollow"> tag from index.html.
+User-agent: *
+Disallow: /
