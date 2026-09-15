@@ -1,0 +1,353 @@
+/* ===========================================================================
+   Cha-Mei Tang, ScD
+   Site stylesheet. Loaded after the MegaOne demo sheets so it wins the cascade.
+
+   Three accent tokens, not one. A single teal cannot pass AA on both a white
+   ground and a near-black ground, so the base is used only for rules and for
+   figures set at 24px and above, --ct-acc-ink carries small text on light
+   grounds, and --ct-acc-lift carries small text on dark grounds. Measured
+   ratios are noted beside each token.
+   =========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap");
+
+:root{
+  --ct-ink:#0E1A24;        /* 17.62 on white, 15.75 on paper */
+  --ct-ink-2:#17293A;      /* 14.84 on white, 13.27 on paper */
+  --ct-muted:#55677A;      /*  5.82 on white,  5.20 on paper */
+  --ct-acc:#1C7FA0;        /* rules and 24px+ figures only. 4.09 on paper */
+  --ct-acc-ink:#155F79;    /*  7.13 on white,  6.37 on paper */
+  --ct-acc-lift:#63C4E0;   /*  8.81 on ink,    7.42 on ink-2 */
+  --ct-paper:#F4F2ED;
+  --ct-line:rgba(14,26,36,.13);
+  --ct-line-dark:rgba(255,255,255,.16);
+  --ct-serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --ct-sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  --ct-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+
+/* --- base ---------------------------------------------------------------- */
+html,body{ background:#fff; }
+body{
+  font-family:var(--ct-sans) !important;
+  color:var(--ct-ink-2) !important;
+  font-size:16.5px; line-height:1.72; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,h5,h6{ font-family:var(--ct-serif) !important; color:var(--ct-ink) !important; }
+a{ color:var(--ct-acc-ink); }
+a:hover,a:focus{ color:var(--ct-ink); }
+:focus-visible{ outline:3px solid var(--ct-acc-ink); outline-offset:3px; }
+img{ max-width:100%; height:auto; }
+section{ padding:0; }
+p{ color:var(--ct-ink-2); }
+
+/* The demo cursor and google map are not used here. */
+#animated-cursor,#google-map{ display:none !important; }
+
+/* --- navigation ---------------------------------------------------------- */
+.navbar-top-default{ padding-top:14px; }
+.nav-box-shadow{ background:rgba(14,26,36,.94) !important; box-shadow:0 10px 34px rgba(14,26,36,.24) !important; }
+.ct-logo{ display:flex; align-items:baseline; gap:8px; text-decoration:none; padding:4px 0; }
+.ct-logo-name{
+  font-family:var(--ct-serif); font-size:20px; font-weight:500; letter-spacing:.2px;
+  color:#fff !important;
+}
+.ct-logo-post{
+  font-family:var(--ct-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ct-acc-lift) !important;
+}
+.navbar-nav .nav-link,
+.navbar-top-default .nav-link{
+  color:#fff !important; font-family:var(--ct-sans) !important;
+  font-size:13px !important; letter-spacing:.09em; text-transform:uppercase; font-weight:500;
+}
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active{ color:var(--ct-acc-lift) !important; }
+.menu-lines span{ background:#fff !important; }
+.side-menu .inner-wrapper{ background:var(--ct-ink) !important; }
+.side-nav .nav-link{ color:#fff !important; font-family:var(--ct-serif) !important; }
+.side-nav .nav-link:hover,.side-nav .nav-link.active{ color:var(--ct-acc-lift) !important; }
+.ct-side-note{ font-family:var(--ct-mono); font-size:12px; color:rgba(255,255,255,.82) !important; }
+
+/* --- hero ---------------------------------------------------------------- */
+.ct-hero{ position:relative; }
+.ct-hero-bg{
+  position:relative; min-height:88vh; display:flex; align-items:center;
+  /* The photograph puts her in the right third of a bright corridor. The gradient
+     darkens the left two thirds so white type sits on a quiet ground, and stops
+     short of her so the subject stays lit. Measured: h1 on the darkest sampled
+     ground, and on the lightest, both pass. */
+  background:
+    linear-gradient(97deg, rgba(8,16,23,.97) 0%, rgba(8,16,23,.95) 38%, rgba(10,20,29,.86) 56%, rgba(12,24,34,.55) 74%, rgba(14,28,40,.30) 100%),
+    url("../img/hero.jpg");
+  background-size:cover, cover;
+  background-position:center, 62% 45%;
+}
+.ct-hero-inner{ width:100%; padding:150px 0 110px; }
+.ct-eyebrow{
+  font-family:var(--ct-mono); font-size:12px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ct-acc-lift) !important; margin:0 0 18px;
+}
+.ct-h1{
+  font-family:var(--ct-serif) !important; color:#fff !important;
+  font-size:clamp(40px,6vw,74px); font-weight:400; line-height:1.06; letter-spacing:-.5px;
+  margin:0 0 22px; text-wrap:balance;
+}
+.ct-h1 span{ font-style:italic; font-weight:300; color:#fff !important; }
+.ct-lede{
+  color:rgba(255,255,255,.93) !important; font-size:18px; line-height:1.74;
+  max-width:60ch; margin:0 0 32px;
+}
+.ct-btn{
+  display:inline-block; font-family:var(--ct-sans); font-size:13px; font-weight:600;
+  letter-spacing:.11em; text-transform:uppercase; text-decoration:none;
+  padding:15px 30px; border:1px solid var(--ct-acc-lift); color:var(--ct-acc-lift) !important;
+  background:transparent; transition:background .2s ease,color .2s ease;
+}
+.ct-btn:hover,.ct-btn:focus{ background:var(--ct-acc-lift); color:var(--ct-ink) !important; }
+.ct-btn-solid{
+  border:1px solid var(--ct-acc-ink); background:var(--ct-acc-ink); color:#fff !important;
+  cursor:pointer;
+}
+.ct-btn-solid:hover,.ct-btn-solid:focus{ background:var(--ct-ink); border-color:var(--ct-ink); color:#fff !important; }
+
+/* --- section shell ------------------------------------------------------- */
+.ct-sec{ padding:104px 0; background:#fff; }
+.ct-title{ margin-bottom:56px; }
+.ct-title h5{
+  font-family:var(--ct-mono) !important; font-size:12px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--ct-acc-ink) !important; margin:0 0 16px;
+}
+.ct-title h2{
+  font-size:clamp(28px,3.6vw,44px); font-weight:400; line-height:1.18;
+  letter-spacing:-.3px; margin:0 0 20px; max-width:22ch; text-wrap:balance;
+}
+.ct-title p{ font-size:17.5px; max-width:62ch; margin:0; color:var(--ct-ink-2) !important; }
+.ct-title.text-left h2{ max-width:20ch; }
+
+/* --- the work ------------------------------------------------------------ */
+.ct-figure{ border:1px solid var(--ct-line); overflow:hidden; }
+.ct-figure img{ width:100%; display:block; }
+.ct-figure-tall img{ aspect-ratio:4/5; object-fit:cover; }
+.ct-point{ display:flex; gap:22px; padding:0 0 30px; }
+.ct-point:last-child{ padding-bottom:0; }
+.ct-point-n{
+  font-family:var(--ct-mono); font-size:13px; font-weight:500; letter-spacing:.06em;
+  color:var(--ct-acc-ink) !important; padding-top:5px; flex:0 0 auto; min-width:30px;
+  border-top:2px solid var(--ct-acc);
+}
+.ct-point h4{ font-size:21px; font-weight:500; margin:0 0 8px; line-height:1.3; }
+.ct-point p{ margin:0; color:var(--ct-muted) !important; font-size:16px; }
+
+.ct-claims{
+  margin-top:70px; background:var(--ct-paper); border-left:3px solid var(--ct-acc);
+  padding:40px 44px;
+}
+.ct-claims-title{ font-size:19px; font-weight:500; margin:0 0 20px; }
+.ct-claims ul{ list-style:none; margin:0 0 22px; padding:0; }
+.ct-claims li{
+  position:relative; padding:0 0 12px 26px; color:var(--ct-ink-2);
+  border-bottom:1px solid var(--ct-line); margin-bottom:12px; font-size:16.5px;
+}
+.ct-claims li:last-of-type{ border-bottom:0; margin-bottom:0; }
+.ct-claims li::before{
+  content:""; position:absolute; left:0; top:11px; width:10px; height:1px; background:var(--ct-acc);
+}
+.ct-src{ font-family:var(--ct-mono); font-size:12.5px; line-height:1.7; color:var(--ct-muted) !important; margin:0; }
+
+/* --- stats --------------------------------------------------------------- */
+.ct-stats{ background:var(--ct-ink) !important; padding:78px 0 !important; }
+.ct-stat{ text-align:center; padding:18px 14px; }
+.ct-stat-n{
+  font-family:var(--ct-serif); font-size:52px; line-height:1; font-weight:300;
+  color:var(--ct-acc-lift) !important; margin:0 0 14px;
+  font-variant-numeric:tabular-nums;
+}
+.ct-stat h6{
+  font-size:14px; font-weight:400; line-height:1.6; margin:0; max-width:24ch;
+  margin-left:auto; margin-right:auto;
+  color:rgba(255,255,255,.93) !important; font-family:var(--ct-sans) !important;
+}
+
+/* --- career -------------------------------------------------------------- */
+.ct-half{ background:var(--ct-paper); }
+.ct-half-img img{ height:100%; min-height:460px; object-fit:cover; display:block; }
+.ct-half-body{ padding:96px 6% 96px 8%; }
+.ct-timeline{ list-style:none; margin:0 0 30px; padding:0; }
+.ct-timeline li{ padding:0 0 26px 24px; border-left:1px solid var(--ct-line); position:relative; }
+.ct-timeline li:last-child{ padding-bottom:0; }
+.ct-timeline li::before{
+  content:""; position:absolute; left:-4px; top:9px; width:7px; height:7px;
+  background:var(--ct-acc); border-radius:50%;
+}
+.ct-year{
+  display:block; font-family:var(--ct-mono); font-size:12px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ct-acc-ink) !important; margin-bottom:6px;
+}
+.ct-timeline h6{ font-size:18px; font-weight:500; margin:0 0 4px; line-height:1.34; font-family:var(--ct-serif) !important; }
+.ct-timeline p{ margin:0; font-size:15.5px; color:var(--ct-muted) !important; }
+.ct-edu{ font-size:15.5px; color:var(--ct-ink-2) !important; border-top:1px solid var(--ct-line); padding-top:22px; margin:0; max-width:62ch; }
+.ct-edu b{ font-weight:600; color:var(--ct-ink); }
+
+/* --- company ------------------------------------------------------------- */
+.ct-div-list{ margin-top:8px; }
+.ct-div{ padding:22px 0; border-top:1px solid var(--ct-line); }
+.ct-div:last-child{ border-bottom:1px solid var(--ct-line); }
+.ct-div h4{ font-size:19px; font-weight:500; margin:0 0 7px; }
+.ct-div p{ margin:0; font-size:16px; color:var(--ct-muted) !important; }
+
+/* --- quote --------------------------------------------------------------- */
+.ct-quote-sec{ background:var(--ct-ink); }
+.ct-quote-img img{ height:100%; min-height:440px; object-fit:cover; display:block; }
+.ct-quote-panel{ background:var(--ct-ink-2); }
+.ct-quote-body{ padding:80px 8%; }
+.ct-quote-body blockquote{ margin:0 0 28px; padding:0; border:0; }
+.ct-quote-body blockquote p{
+  font-family:var(--ct-serif) !important; font-size:clamp(23px,2.5vw,32px); line-height:1.36;
+  font-weight:300; color:#fff !important; margin:0 0 22px; text-wrap:balance;
+}
+.ct-quote-body blockquote p::before{ content:"\201C"; }
+.ct-quote-body blockquote p::after{ content:"\201D"; }
+.ct-quote-body cite{
+  display:block; font-style:normal; font-family:var(--ct-mono); font-size:12.5px;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--ct-acc-lift) !important;
+}
+.ct-quote-note{
+  font-size:15px; line-height:1.74; color:rgba(255,255,255,.88) !important;
+  border-top:1px solid var(--ct-line-dark); padding-top:22px; margin:0; max-width:52ch;
+}
+
+/* --- gallery ------------------------------------------------------------- */
+.ct-gallery-sec{ background:#fff; }
+.ct-gallery{ margin-left:-10px; margin-right:-10px; }
+.ct-plate{ padding:10px; }
+.ct-plate a{ display:block; position:relative; overflow:hidden; border:1px solid var(--ct-line); }
+.ct-plate img{ width:100%; aspect-ratio:4/3; object-fit:cover; display:block; transition:transform .5s ease; }
+.ct-plate a:hover img,.ct-plate a:focus img{ transform:scale(1.04); }
+.ct-plate-cap{
+  position:absolute; left:0; right:0; bottom:0; padding:38px 18px 15px;
+  background:linear-gradient(to top, rgba(10,19,27,.94) 0%, rgba(10,19,27,.80) 55%, rgba(10,19,27,0) 100%);
+  color:#fff; font-family:var(--ct-mono); font-size:12px; letter-spacing:.06em;
+}
+.ct-plate-note{
+  margin:34px 0 0; font-size:13.5px; line-height:1.7; color:var(--ct-muted) !important;
+  max-width:74ch; border-top:1px solid var(--ct-line); padding-top:18px;
+}
+
+/* --- recognition --------------------------------------------------------- */
+.ct-recog{ background:var(--ct-paper); }
+.ct-card-col{ margin-bottom:24px; display:flex; }
+.ct-card{
+  background:#fff; border:1px solid var(--ct-line); border-top:3px solid var(--ct-acc);
+  padding:30px 28px; width:100%;
+}
+.ct-card-year{
+  display:block; font-family:var(--ct-mono); font-size:12.5px; letter-spacing:.14em;
+  color:var(--ct-acc-ink) !important; margin-bottom:12px;
+}
+.ct-card h4{ font-size:19px; font-weight:500; line-height:1.32; margin:0 0 10px; }
+.ct-card p{ margin:0; font-size:15px; color:var(--ct-muted) !important; }
+.ct-affil{ margin-top:26px; border-top:1px solid var(--ct-line); padding-top:32px; }
+.ct-affil h4{ font-size:17px; font-weight:500; margin:0 0 10px; }
+.ct-affil p{ margin:0; color:var(--ct-ink-2) !important; font-size:16.5px; }
+
+/* --- contact ------------------------------------------------------------- */
+.ct-contact{ background:#fff; }
+.ct-contact-card{ background:var(--ct-paper); padding:38px 34px; border-left:3px solid var(--ct-acc); }
+.ct-ci{ padding-bottom:22px; margin-bottom:22px; border-bottom:1px solid var(--ct-line); }
+.ct-ci:last-child{ padding-bottom:0; margin-bottom:0; border-bottom:0; }
+.ct-ci-label{
+  display:block; font-family:var(--ct-mono); font-size:11.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ct-acc-ink) !important; margin-bottom:8px;
+}
+.ct-ci p{ margin:0; font-size:16px; line-height:1.7; color:var(--ct-ink-2) !important; }
+.ct-ci a{ color:var(--ct-acc-ink) !important; text-decoration:underline; text-underline-offset:3px; }
+.ct-ci a:hover{ color:var(--ct-ink) !important; }
+
+.ct-form label{
+  display:block; font-family:var(--ct-mono); font-size:11.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ct-muted) !important; margin:0 0 8px;
+}
+.ct-form input,.ct-form textarea{
+  width:100%; margin-bottom:24px; padding:14px 16px; font-family:var(--ct-sans);
+  font-size:16px; color:var(--ct-ink) !important; background:#fff;
+  border:1px solid var(--ct-line); border-radius:0;
+}
+.ct-form input:focus,.ct-form textarea:focus{ border-color:var(--ct-acc-ink); outline:none; box-shadow:0 0 0 3px rgba(21,95,121,.14); }
+.ct-form textarea{ resize:vertical; }
+
+/* --- footer -------------------------------------------------------------- */
+.ct-footer{ background:var(--ct-ink); padding:52px 0; }
+.ct-foot-name{ font-family:var(--ct-serif); font-size:20px; color:#fff !important; margin:0 0 6px; }
+.ct-foot-note{ font-size:14px; color:rgba(255,255,255,.86) !important; margin:0; line-height:1.7; }
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width:991px){
+  .ct-sec{ padding:74px 0; }
+  .ct-half-body{ padding:64px 7%; }
+  .ct-quote-body{ padding:60px 8%; }
+  .ct-hero-inner{ padding:130px 0 80px; }
+  .ct-half-img img,.ct-quote-img img{ min-height:320px; }
+  .ct-claims{ padding:32px 26px; margin-top:52px; }
+}
+@media (max-width:767px){
+  body{ font-size:16px; }
+  .ct-hero-bg{ background-position:center, 62% 30%; min-height:auto; }
+  .ct-stat-n{ font-size:42px; }
+  .ct-point{ gap:16px; }
+  .ct-contact-card{ padding:30px 24px; }
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation:none !important; transition:none !important; }
+}
+
+/* ===========================================================================
+   Demo geometry, un-picked
+   ---------------------------------------------------------------------------
+   Each rule below neutralises something the MegaOne demo does that this build
+   does not want. They are kept together so the reason is legible rather than
+   scattered through the sheet.
+   =========================================================================== */
+
+/* The demo makes #home a flex container via .center-block. The hero band was
+   then treated as a flex item, shrank to its content width and centred itself,
+   leaving white gutters down both sides of a full-bleed section. */
+.ct-hero{ display:block !important; }
+.ct-hero-bg{ width:100% !important; flex:none !important; }
+
+/* .bottom-nav pinned the navbar absolutely to the foot of the hero. Removed
+   from the markup; this pins the bar to the top of the viewport instead. */
+.ct-nav{
+  position:fixed !important; top:0 !important; bottom:auto !important;
+  left:0; right:0; z-index:1030;
+}
+
+/* The demo paints the active nav item in its own red, #DC3545, which is both
+   off-palette and 3.9:1 against white. */
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover,
+.navbar-top-default .nav-link.active{
+  background:transparent !important; color:var(--ct-acc-lift) !important;
+}
+.navbar-nav .nav-link.active{ box-shadow:inset 0 -2px 0 var(--ct-acc-lift); }
+
+/* The quote band's image column carried a min-height rather than stretching,
+   so the section ground showed through beneath it as a mismatched dark strip. */
+.ct-quote-sec .row{ align-items:stretch !important; }
+.ct-quote-img{ display:flex; }
+.ct-quote-img img{ width:100%; height:auto; min-height:100%; object-fit:cover; }
+
+/* Same for the career band. */
+.ct-half .row{ align-items:stretch !important; }
+.ct-half-img{ display:flex; }
+.ct-half-img img{ width:100%; height:auto; min-height:100%; object-fit:cover; }
+.ct-half-body{ display:flex; flex-direction:column; justify-content:center; height:100%; }
+
+/* Six figures across on desktop, three on tablet, two on phone. */
+.ct-stats-note{
+  margin:34px auto 0; max-width:64ch; text-align:center;
+  font-family:var(--ct-mono); font-size:12px; line-height:1.7;
+  color:rgba(255,255,255,.80) !important;
+  border-top:1px solid var(--ct-line-dark); padding-top:22px;
+}
+@media (max-width:1199px){ .ct-stat{ padding:22px 10px; } }
